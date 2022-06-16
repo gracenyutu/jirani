@@ -15,7 +15,6 @@ class Profile(models.Model):
     profile_pic = models.ImageField(upload_to='media/images/', default='default.png')
     bio = models.TextField(max_length=500, default="My Bio", blank=True)
     name = models.CharField(blank=True, max_length=120)
-    contact = models.EmailField(max_length=100, blank=True)
     location = models.CharField(max_length=60, blank=True)
     neighborhood = models.ForeignKey(Neighborhood, on_delete=models.SET_NULL, null=True, related_name='members', blank=True)
 

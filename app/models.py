@@ -21,8 +21,8 @@ class Profile(models.Model):
 
 class Business(models.Model):
     email = models.EmailField()
-    user = models.ForeignKey("User", on_delete=models.CASCADE, related_name='owner')
-    neighborhood = models.ForeignKey(Neighborhood, on_delete=models.SET_NULL, null=True, related_name='members', blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owner')
+    neighborhood = models.ForeignKey(Neighborhood, on_delete=models.SET_NULL, null=True, related_name='business_owner', blank=True)
     name = models.CharField(blank=True, max_length=120)
     description = models.TextField(blank=True)
 
@@ -32,4 +32,4 @@ class Post(models.Model):
     photo = models.ImageField(upload_to='media/posts/', blank=True)
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="post")
     date = models.DateTimeField(auto_now_add=True, blank=True)
-    neighborhood = models.ForeignKey(Neighborhood, on_delete=models.SET_NULL, null=True, related_name='members', blank=True)
+    neighborhood = models.ForeignKey(Neighborhood, on_delete=models.SET_NULL, null=True, related_name='post_owner', blank=True)

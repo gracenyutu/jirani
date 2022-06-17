@@ -4,6 +4,7 @@ from django.contrib.auth import login, authenticate
 from .models import Post, Profile, Business, Neighborhood
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 # Create your views here.
 def home(request):
@@ -25,16 +26,7 @@ def signup(request):
 
 login_required(login_url='Login')
 def profile(request, username):
-    return render(request, 'awwards/profile.html')
-
-def user_profile(request, username):
-    userprof = get_object_or_404(User, username=username)
-    if request.user == userprof:
-        return redirect('profile', username=request.user.username)
-    context = {
-        'userprof': userprof,
-    }
-    return render(request, 'jirani/userprofile.html', context)
+    return render(request, 'jirani/profile.html')
 
 @login_required(login_url='login')
 def edit_profile(request, username):
@@ -54,3 +46,18 @@ def edit_profile(request, username):
         'prof_form': prof_form
     }
     return render(request, 'jirani/edit.html', context)
+
+@login_required(login_url='login')
+def upload(request):
+    profile = Profile.objects.get(user=request.user)
+    profileimage = profile.profile_pic.url
+    if request.method == 'POST':
+        post = request.FILES['post']
+        print(post)
+        profile = Profile.objects.get(user=request.user)
+        posts = Post.objects.create(user=request.user,photo=post)
+        if posts:
+            messages.success(request,"post uploaded successfully!")
+        else:
+            messages.success(request,"post failed!")
+    return render(request,'awwards/uploadpost.html',{'profileimage':profileimage})

@@ -83,7 +83,15 @@ header {
 }
 
 .card {
-  background-color: #e2a748;
+  background-color: #dbb880;
   width: fit-content;
-  height: 100px;
+  height: fit-content;
+}
+
+.btn-primary {
+  background-color: #06215c;
+}
+
+.bg-steel {
+  background-color: #e2a035;
 }

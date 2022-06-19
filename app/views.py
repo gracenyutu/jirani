@@ -107,3 +107,32 @@ def hoods(request):
         'hoods': hoods,
     }
     return render(request, 'jirani/jirani.html', context)
+
+def hood(request, hood_id):
+    hood = Neighborhood.objects.get(id=hood_id)
+    business = Business.objects.filter(neighbourhood=hood)
+    posts = Post.objects.filter(hood=hood)
+    posts = posts[::-1]
+    if request.method == 'POST':
+        form = JiraniForm(request.POST)
+        if form.is_valid():
+            b_form = form.save(commit=False)
+            b_form.neighbourhood = hood
+            b_form.user = request.user.profile
+            b_form.save()
+            return redirect('hood', hood.id)
+    else:
+        form = JiraniForm()
+    context = {
+        'hood': hood,
+        'business': business,
+        'form': form,
+        'posts': posts
+    }
+    return render(request, 'jirani/hood.html', context)
+
+
+def occupants(request, hood_id):
+    hood = Neighborhood.objects.get(id=hood_id)
+    members = Profile.objects.filter(neighbourhood=hood)
+    return render(request, 'jirani/occupants.html', {'members': members})

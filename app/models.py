@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 class Neighborhood(models.Model):
     hoodname = models.CharField(blank=True, max_length=120)
     location = models.CharField(max_length=60, blank=True)
-    occupants = models.IntegerField(null=True, blank=True)
     admin = models.ForeignKey("Profile", on_delete=models.CASCADE, related_name='hood')
     hoodphoto = models.ImageField(upload_to='images/', null=True)
     description = models.TextField(null =True)
@@ -21,7 +20,7 @@ class Profile(models.Model):
     bio = models.TextField(max_length=500, default="My Bio", blank=True)
     name = models.CharField(blank=True, max_length=120)
     location = models.CharField(max_length=60, blank=True)
-    neighborhood = models.ForeignKey(Neighborhood, on_delete=models.SET_NULL, null=True, related_name='members', blank=True)
+    neighborhood = models.ForeignKey(Neighborhood, on_delete=models.SET_NULL, null=True, related_name='occupants', blank=True)
 
     def __str__(self):
         return f'{self.user.username} profile'

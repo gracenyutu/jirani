@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from app.models import Profile, Post
+from app.models import Business, Profile, Post, Neighborhood
 from django.contrib.auth.models import User
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -17,3 +17,13 @@ class PostSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     profile = ProfileSerializer(read_only=True)
     posts = PostSerializer(many=True, read_only=True)
+
+class NeighborhoodSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Neighborhood
+        fields = ['hoodname', 'location', 'hoodphoto', 'description', 'healthdep', 'policeno']
+
+class BusinessSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Business
+        fields = ['name', 'email', 'description']

@@ -9,7 +9,7 @@
             <div class="card mb-4" style="min-height:340px">
                 <img src="{{ hood.hoodphoto.url }}" class="card-img-top" alt="{{ hood.hoodname }}">
                 <div class="card-body">
-                    <h5 class="card-title">{{ hood.hoodname }}  ({{hood.location}}) <span class="ml-4">{{hood.members.count}} member{{hood.members.count|pluralize}}</span></h5>
+                    <h5 class="card-title">{{ hood.hoodname }}  ({{hood.location}}) <span class="ml-4">{{hood.occupants.count}} occupants{{hood.occupants.count|pluralize}}</span></h5>
                     <p class="card-text">{{hood.description}}</p>
                     {% if request.user.profile.neighborhood == hood %}
                     <a href="{% url 'leave-hood' hood.id %}" class="btn btn-outline-danger btn-sm">Leave Hood</a>

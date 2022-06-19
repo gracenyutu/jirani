@@ -134,5 +134,5 @@ def hood(request, hood_id):
 
 def occupants(request, hood_id):
     hood = Neighborhood.objects.get(id=hood_id)
-    members = Profile.objects.filter(neighbourhood=hood)
-    return render(request, 'jirani/occupants.html', {'members': members})
+    occupants = Profile.objects.filter(neighbourhood=hood)
+    return render(request, 'jirani/occupants.html', {'occupants': occupants})

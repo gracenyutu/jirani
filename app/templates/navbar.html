@@ -2,28 +2,50 @@
     <header>
         <!-- Navbar -->
         <nav class="navbar fixed-top navbar-expand-lg navbar-transparent navbar-light bg-steel">
-            <a class="navbar-brand" href="#">JIRANI</a>
+            <a class="navbar-brand" href="{% url 'home' %}">JIRANI</a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav navbar-right">
                     {% if user.is_authenticated%}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown">{{ user.username|title }} 
-                           <img class="rounded-circle nav-img" src="{{ user.profile.profile_pic.url }}" width="22" height="22" class="rounded-circle" alt="..." style="width: 55px; height: 55px">
-                        </a>
-                        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item text-center" href="{% url 'profile' user.username %}">Profile</a>
-                            <hr>
-                            <a class="dropdown-item text-center" href="{% url 'edit' user.username  %}"> Edit profile</a>
-                            <hr>
+                        <li class="nav-item">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown">{{ user.username|title }} 
+                            <img class="rounded-circle nav-img" src="{{ user.profile.profile_pic.url }}" width="22" height="22" class="rounded-circle" alt="..." style="width: 45px; height: 45px">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="text-center" href="{% url 'profile' user.username %}">Profile</a>
+                        </li>
+                        <li>
+                            <a class="text-center" href="{% url 'edit' user.username  %}"> Edit profile</a>
+                        </li>
+                        <li class="mb-4">
+                            <a href="{% url 'jirani' %}">
+                                <i class="fas fa-home"></i>&nbsp;
+                                &nbsp; Hoods
+                            </a>
+                        </li>
+                        {% if user.profile.neighbourhood %}
+                            <li class="mb-4">
+                                <a href="{% url 'hood' user.profile.neighborhood.id %}">
+                                    <i class="fas fa-paper-plane"></i>&nbsp;
+                                    &nbsp;{{user.profile.neighborhood.hoodname}}
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="mb-4">
+                                <a href=""> &nbsp;
+                                    No Hood Yet
+                                </a>
+                            </li>
+                        {% endif %}
+                        <li>
                             <a href="{% url 'logout' %}" class="text-secondary text-center dropdown-item">Log Out</a>
-                        </div>
-                    </li>
+                        </li>
                     {% else %}
-                    <a href="{% url 'login' %}" class="login btn btn-sm btn-primary"> Register/Login </a>
+                        <a href="{% url 'login' %}" class="login btn btn-sm btn-primary"> Register/Login </a>
                     {% endif %}
                 </ul>
             </div>
         </nav>
         <!-- ./ end of navbar -->
     </header>
-</div>
+</div>    

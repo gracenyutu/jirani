@@ -1,0 +1,39 @@
+{% extends 'jirani/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="card newhood">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <h3 class="text-center"><b>Add Your Neighborhood Here</b></h3><hr>
+                    <form action="" method="post" enctype="multipart/form-data" novalidate>
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button class="btn btn-sm btn-primary">Add Hood</button>
+                    </form>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>        
+{% endblock %}
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="card newhood">
+            <h3 class="text-center"><b>Add Your Neighborhood Here</b></h3><hr>
+            <form action="" method="post" enctype="multipart/form-data" novalidate>
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button class="btn btn-sm btn-primary">Add Hood</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>

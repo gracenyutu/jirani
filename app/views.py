@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import SignupForm, UpdateUserForm, UpdateUserProfileForm
+from .forms import SignupForm, UpdateUserForm, UpdateUserProfileForm, PostForm, JiraniForm
 from django.contrib.auth import login, authenticate
 from .models import Post, Profile, Business, Neighborhood
 from django.contrib.auth.models import User
@@ -60,4 +60,50 @@ def upload(request):
             messages.success(request,"post uploaded successfully!")
         else:
             messages.success(request,"post failed!")
-    return render(request,'awwards/uploadpost.html',{'profileimage':profileimage})
+    return render(request,'jirani/uploadpost.html',{'profileimage':profileimage})
+
+def search(request):
+    if request.method == 'GET':
+        title = request.GET.get("title")
+        results = Post.objects.filter(title__icontains=title).all()
+        print(results)
+        message = f'name'
+        context = {'results': results,'message': message}
+        return render(request, 'jirani/search.html', context)
+    else:
+        message = "You haven't searched for any site"
+    return render(request, 'jirani/search.html', {'message': message})
+
+def newhood(request):
+    if request.method == 'POST':
+        form = JiraniForm(request.POST, request.FILES)
+        if form.is_valid():
+            hood = form.save(commit=False)
+            hood.admin = request.user.profile
+            hood.save()
+            return redirect('jirani')
+    else:
+        form = JiraniForm()
+    return render(request, 'jirani/newhood.html', {'form': form})
+
+
+def joinahood(request, id):
+    neighborhood = get_object_or_404(Neighborhood, id=id)
+    request.user.profile.neighborhood = neighborhood
+    request.user.profile.save()
+    return redirect('jirani')
+
+
+def leaveahood(request, id):
+    hood = get_object_or_404(Neighborhood, id=id)
+    request.user.profile.neighborhood = None
+    request.user.profile.save()
+    return redirect('jirani')
+
+def hoods(request):
+    hoods = Neighborhood.objects.all()
+    hoods = hoods[::-1]
+    context = {
+        'hoods': hoods,
+    }
+    return render(request, 'jirani/jirani.html', context)

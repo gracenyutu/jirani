@@ -22,3 +22,15 @@ class UpdateUserProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['name', 'profile_pic', 'bio', 'location']
+
+class PostForm(forms.ModelForm):
+    photo = forms.ImageField(label='')
+
+    class Meta:
+        model = Post
+        fields = ('photo', 'title', 'post' )
+
+class JiraniForm(forms.ModelForm):
+    class Meta:
+        model = Neighborhood
+        exclude = ('admin',)

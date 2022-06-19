@@ -7,8 +7,13 @@ class Neighborhood(models.Model):
     location = models.CharField(max_length=60, blank=True)
     occupants = models.IntegerField(null=True, blank=True)
     admin = models.ForeignKey("Profile", on_delete=models.CASCADE, related_name='hood')
+    hoodphoto = models.ImageField(upload_to='images/', null=True)
+    description = models.TextField(null =True)
     healthdep = models.IntegerField(null=True, blank=True)
     policeno = models.IntegerField(null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.hoodname} hood'
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
@@ -18,6 +23,8 @@ class Profile(models.Model):
     location = models.CharField(max_length=60, blank=True)
     neighborhood = models.ForeignKey(Neighborhood, on_delete=models.SET_NULL, null=True, related_name='members', blank=True)
 
+    def __str__(self):
+        return f'{self.user.username} profile'
 class Business(models.Model):
     email = models.EmailField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='owner')
@@ -25,10 +32,13 @@ class Business(models.Model):
     name = models.CharField(blank=True, max_length=120)
     description = models.TextField(blank=True)
 
+    def __str__(self):
+        return f'{self.name} Business'
+
 class Post(models.Model):
     title = models.CharField(max_length=155)
     post = models.TextField(max_length=500)
     photo = models.ImageField(upload_to='media/posts/', blank=True)
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="post")
     date = models.DateTimeField(auto_now_add=True, blank=True)
-    neighborhood = models.ForeignKey(Neighborhood, on_delete=models.SET_NULL, null=True, related_name='post_owner', blank=True)
+    hood = models.ForeignKey(Neighborhood, on_delete=models.SET_NULL, null=True, related_name='post_owner', blank=True)

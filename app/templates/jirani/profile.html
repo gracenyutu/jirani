@@ -1,15 +1,15 @@
 {% extends 'jirani/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="card" style="margin-top:7%;">
+    <div style="margin-top:7%;">
         <div class="row">
             <div class="col-md-4 mt-4">
                 <img class="gallery-image" src="{{ user.profile.profile_pic.url }}"/>
                 <div class="card-body">
-                    <h5 class="card-title" style="color: black;">{{user.username}}</h5>
+                    <h5 class="card-title" style="color: black;">Name: {{user.username}}</h5>
                     <div class="card-text">
-                        <p  style="color: black;"> {{user.bio}}</p>
-                        <p  style="color: black;"> {{user.email}}</p>
+                        <p  style="color: black;">Bio: {{user.bio}}</p>
+                        <p  style="color: black;">Email: {{user.email}}</p>
                     </div>
                 </div>
             </div>

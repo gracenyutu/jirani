@@ -1,10 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Allerta+Stencil&display=swap");
 
 body {
-  background: #e2a748;
-}
-
-header {
   background: url(/static/images/hood.avif);
   background-repeat: no-repeat;
   background-size: cover;
@@ -82,16 +78,17 @@ header {
   color: #ce0000;
 }
 
-.card {
-  background-color: #dbb880;
-  width: fit-content;
-  height: fit-content;
-}
-
 .btn-primary {
   background-color: #06215c;
 }
 
 .bg-steel {
   background-color: #e2a035;
+}
+
+.card {
+  background-color: #dbb880;
+  margin-top: 100px;
+  color: #06215c;
+  width: fit-content;
 }

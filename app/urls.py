@@ -11,4 +11,9 @@ urlpatterns = [
     path('profile/<username>/', views.profile, name='profile'),
     path('profile/<username>/settings', views.edit_profile, name='edit'),
     path('upload/', views.upload, name='upload'),
+    path('search/', views.search, name='search'),
+    path('newhood/', views.newhood, name='new-hood'),
+    path('joinhood/<id>', views.joinahood, name='join-hood'),
+    path('leavehood/<id>', views.leaveahood, name='leave-hood'),
+    path('hoods/', views.hoods, name='jirani'),
 ]

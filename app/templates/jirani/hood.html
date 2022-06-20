@@ -12,7 +12,7 @@
                     </div>
                     <div class="col-md-7">
                         <div class="card-body">
-                            <h5 class="card-title tt">{{ hood.hoodname }} ({{hood.location}})
+                            <h5 class="card-title">{{ hood.hoodname }} ({{hood.location}})
                             </h5>
                             <h6 class="card-text">
                                 <span><strong>{{hood.occupants.count}}</strong> Member{{hood.occupants.count|pluralize}}</span>
@@ -31,14 +31,14 @@
             </div>
         </div>
     </div>
-    <div class="container bg-white hood">
+    <div class="container bg-hood">
         <div class="row">
             <div class="col-md-12">
-                <a href="" class="btn btn-sm btn-outline-info mb-4 mr-4" data-toggle="modal" data-target="#ModalCenter">Add
+                <a href="" class="btn btn-sm btn-outline-primary mb-4 mr-4" data-toggle="modal" data-target="#ModalCenter">Add
                     Business</a>
-                <a class="btn btn-sm btn-outline-info mb-4" href="{% url 'upload' hood.id %}">New Post</a>
+                <a class="btn btn-sm btn-outline-primary mb-4" href="{% url 'upload'%}">New Post</a>
                 {% if hood.admin == user.profile %}
-                <a href="{% url 'occupants' hood.id %}" class="btn btn-sm btn-outline-info mb-4 ml-4">Members</a>
+                <a href="{% url 'occupants' hood.id %}" class="btn btn-sm btn-outline-primary mb-4 ml-4">Members</a>
                 {% endif %}
                 <form class="form-inline" method="get" action="{% url 'search' %}">
                     {% csrf_token %}

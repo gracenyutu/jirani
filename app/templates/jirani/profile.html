@@ -2,14 +2,15 @@
 {% load crispy_forms_tags %}
 {% block content %}
     <div style="margin-top:7%;">
-        <div class="row">
+        <div class="row profile">
             <div class="col-md-4 mt-4">
                 <img class="gallery-image" src="{{ user.profile.profile_pic.url }}"/>
                 <div class="card-body">
-                    <h5 class="card-title" style="color: black;">Name: {{user.username}}</h5>
+                    <h5 class="card-title"><b>Name: </b>{{user.username}}</h5>
                     <div class="card-text">
-                        <p  style="color: black;">Bio: {{user.bio}}</p>
-                        <p  style="color: black;">Email: {{user.email}}</p>
+                        <p><b>Bio:</b> {{user.bio}}</p>
+                        <p><b>Email:</b> {{user.email}}</p>
+                        <p><b>Hood:</b><a href="{% url 'hood' user.profile.neighborhood.id%}">{{user.profile.neighborhood.hoodname}} </a></p>
                     </div>
                 </div>
             </div>

@@ -24,7 +24,7 @@ def signup(request):
         form = SignupForm()
     return render(request, 'registration/signup.html', {'form': form})
 
-login_required(login_url='Login')
+login_required(login_url='login')
 def profile(request, username):
     return render(request, 'jirani/profile.html')
 
@@ -134,5 +134,5 @@ def hood(request, hood_id):
 
 def occupants(request, hood_id):
     hood = Neighborhood.objects.get(id=hood_id)
-    occupants = Profile.objects.filter(neighbourhood=hood)
+    occupants = Profile.objects.filter(neighborhood=hood)
     return render(request, 'jirani/occupants.html', {'occupants': occupants})

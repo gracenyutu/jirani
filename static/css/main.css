@@ -92,3 +92,15 @@ body {
   color: #06215c;
   width: fit-content;
 }
+
+.profile {
+  background-color: #dbb880;
+  margin-top: 100px;
+  color: #06215c;
+  width: 600px;
+}
+
+.bg-hood {
+  background-color: #dbb880;
+  color: #06215c;
+}

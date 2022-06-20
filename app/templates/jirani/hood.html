@@ -31,12 +31,12 @@
             </div>
         </div>
     </div>
-    <div class="container bg-white hoode">
+    <div class="container bg-white hood">
         <div class="row">
             <div class="col-md-12">
                 <a href="" class="btn btn-sm btn-outline-info mb-4 mr-4" data-toggle="modal" data-target="#ModalCenter">Add
                     Business</a>
-                <a class="btn btn-sm btn-outline-info mb-4" href="{% url 'post' hood.id %}">New Post</a>
+                <a class="btn btn-sm btn-outline-info mb-4" href="{% url 'upload' hood.id %}">New Post</a>
                 {% if hood.admin == user.profile %}
                 <a href="{% url 'occupants' hood.id %}" class="btn btn-sm btn-outline-info mb-4 ml-4">Members</a>
                 {% endif %}

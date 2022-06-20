@@ -110,7 +110,7 @@ def hoods(request):
 
 def hood(request, hood_id):
     hood = Neighborhood.objects.get(id=hood_id)
-    business = Business.objects.filter(neighbourhood=hood)
+    business = Business.objects.filter(neighborhood=hood)
     posts = Post.objects.filter(hood=hood)
     posts = posts[::-1]
     if request.method == 'POST':

@@ -23,7 +23,7 @@ Click [Link](https://young-headland-66302.herokuapp.com/) to visit my site
 
 ## API Endpoints
 1. For the profiles details (https://young-headland-66302.herokuapp.com/api/prof/)
-2. For the neighborhood details (https://young-headland-66302.herokuapp.com/api/projects/)
+2. For the neighborhood details (https://young-headland-66302.herokuapp.com/api/neighborhood/)
 3. For the business details (https://young-headland-66302.herokuapp.com/api/business/)
 4. To add (https://young-headland-66302.herokuapp.com/api/add/)
  
